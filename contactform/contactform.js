@@ -1,14 +1,15 @@
 jQuery(document).ready(function($) {
   "use strict";
 
-  //Contact
-  $('form.contactForm').submit(function() {
+  // Contact Form Validation and Submission
+  $('form.contactForm').submit(function(event) {
+    event.preventDefault(); // Prevent default form submission
+
     var f = $(this).find('.form-group'),
       ferror = false,
       emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
 
     f.children('input').each(function() { // run all inputs
-
       var i = $(this); // current input
       var rule = i.attr('data-rule');
 
@@ -42,7 +43,7 @@ jQuery(document).ready(function($) {
             break;
 
           case 'checked':
-            if (! i.is(':checked')) {
+            if (!i.is(':checked')) {
               ferror = ierror = true;
             }
             break;
@@ -57,13 +58,13 @@ jQuery(document).ready(function($) {
         i.next('.validation').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
       }
     });
-    f.children('textarea').each(function() { // run all inputs
 
-      var i = $(this); // current input
+    f.children('textarea').each(function() { // run all textareas
+      var i = $(this); // current textarea
       var rule = i.attr('data-rule');
 
       if (rule !== undefined) {
-        var ierror = false; // error flag for current input
+        var ierror = false;
         var pos = rule.indexOf(':', 0);
         if (pos >= 0) {
           var exp = rule.substr(pos + 1, rule.length);
@@ -85,40 +86,47 @@ jQuery(document).ready(function($) {
             }
             break;
         }
-        i.next('.validation').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
+        i.next('.validation').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
       }
     });
+
+    // If there are errors, prevent submission
     if (ferror) return false;
-    else var str = $(this).serialize();
-    var action = $(this).attr('action');
-    if( ! action ) {
-      action = 'contactform/contactform.php';
-    }
-    $.ajax({
-      type: "POST",
-      url: action,
-      data: str,
-      success: function(msg) {
-        // alert(msg);
-        if (msg == 'OK') {
-          $("#sendmessage").addClass("show");
-          $("#errormessage").removeClass("show");
-          $('.contactForm').find("input, textarea").val("");
-        } else {
-          $("#sendmessage").removeClass("show");
-          $("#errormessage").addClass("show");
-          $('#errormessage').html(msg);
-        }
 
-      },
-      error: function(xhr, status, error) {
-        // Handle the error case
-        $("#sendmessage").removeClass("show");
-        $("#errormessage").addClass("show");
-        $('#errormessage').html("An error occurred while submitting the form. Please try again.");
+    // No errors, proceed with form submission
+    var form = this;
+    var formData = new FormData(form); // Use FormData for submission
+
+    fetch('https://formspree.io/f/xvgpjnjq', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
       }
+    }).then(function(response) {
+      if (response.ok) {
+        $("#sendmessage").addClass("show");
+        $("#errormessage").removeClass("show");
+        $(form).find("input, textarea").val(""); // Clear the form
+      } else {
+        return response.json().then(function(data) {
+          if (data.errors) {
+            $('#errormessage').html(data.errors.map(error => error.message).join(", "));
+            $("#errormessage").addClass("show");
+            $("#sendmessage").removeClass("show");
+          } else {
+            $("#errormessage").html("Oops! There was a problem submitting your form.");
+            $("#errormessage").addClass("show");
+            $("#sendmessage").removeClass("show");
+          }
+        });
+      }
+    }).catch(function(error) {
+      $("#errormessage").html("Oops! There was a problem submitting your form.");
+      $("#errormessage").addClass("show");
+      $("#sendmessage").removeClass("show");
     });
-    return false;
-  });
 
+    return false; // Prevent default form submission
+  });
 });
