@@ -914,6 +914,39 @@ h6 {
   color: #f1f7ff;
 }
 
+
+
+/*--------------------------------------------------------------
+# NewsLetter
+--------------------------------------------------------------*/
+#footer-newsletter .form #successmessage {
+  color: #007bff;
+  border: 1px solid #007bff;
+  display: none;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+#footer-newsletter .form #failuremessage {
+  color: red;
+  display: none;
+  border: 1px solid red;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+#footer-newsletter .form #successmessage.show,
+#footer-newsletter .form #failuremessage.show,
+#footer-newsletter .form .show {
+  display: block;
+}
+
+
+
 /*--------------------------------------------------------------
 # Responsive Media Queries
 --------------------------------------------------------------*/

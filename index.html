@@ -188,30 +188,16 @@
           <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="box">
               <div class="icon"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">Cloud Solutions and DevOps</a></h4>
-              <p class="description">Leverage the power of cloud technologies with our comprehensive cloud services. From infrastructure setup to automated DevOps pipelines, we help you scale effortlessly while optimizing performance and security in cloud environments like AWS, Azure, and Google Cloud.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
               <h4 class="title"><a href="">UI/UX Design</a></h4>
               <p class="description">We create intuitive and engaging user interfaces that put your customers first. Our design experts focus on enhancing usability and delivering seamless experiences, ensuring that every touchpoint reflects your brand while improving user satisfaction.</p>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
             <div class="box">
-              <div class="icon"><i class="ion-ios-world-outline" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href="">Data Analytics and Business Intelligence</a></h4>
-              <p class="description">Harness the power of data to make informed business decisions. We provide cutting-edge analytics solutions that turn your data into valuable insights, helping you identify trends, optimize processes, and drive business growth.</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-clock-outline" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">Cybersecurity Solutions</a></h4>
-              <p class="description">We safeguard your digital assets with comprehensive cybersecurity strategies, protecting your business from data breaches, malware, and other threats. Our proactive approach ensures that your systems stay secure while maintaining regulatory compliance.</p>
+              <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
+              <h4 class="title"><a href="">Mobile Application Consultancy</a></h4>
+              <p class="description">Leverage our expertise to refine your mobile app strategy. From concept validation to market analysis and optimization, we provide end-to-end consultancy services to ensure your mobile applications are positioned for success and meet your business goals.</p>
             </div>
           </div>
 
@@ -372,7 +358,7 @@
           <div class="col-lg-3 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
-              NINO IT Headquarters <br>
+              NINO IT<br>
               Dhaka<br>
               Bangladesh <br>
               <!-- <strong>Phone:</strong> +880123456789<br> -->
@@ -381,6 +367,7 @@
 
             <div class="social-links">
               <a href="https://www.linkedin.com/company/ninoit" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="https://facebook.com/ninoit.official" class="facebook"><i class="fa fa-facebook"></i></a>
             </div>
 
           </div>
@@ -390,9 +377,11 @@
             <p>
               Subscribe to our newsletter to stay updated on the latest in software development and digital innovation. Get insights, updates, and news delivered directly to your inbox.
             </p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit"  value="Subscribe">
+            <form action="" method="post"  class="newsletterForm form-group-newsletter">
+              <input type="email" name="email" required><input type="submit"  value="Subscribe">
             </form>
+            <div id="successmessage" style="display:none;">Your subscription has been confirmed. Thank you!</div>
+            <div id="failuremessage" style="display:none;">There was a problem with your subscription.</div>
           </div>
 
         </div>
@@ -419,6 +408,9 @@
   
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
+  
+  <!-- Newsletter Form JavaScript File -->
+  <script src="newsletterform/newsletterform.js"></script>
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
